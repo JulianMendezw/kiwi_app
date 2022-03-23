@@ -3,7 +3,7 @@ import Navbar from "./navbar";
 import './dashboard.scss'
 
 
-const Dashboard: any = () => {
+const Dashboard = () => {
     return (
         <div className="dashboard-container">
             <Navbar></Navbar>
