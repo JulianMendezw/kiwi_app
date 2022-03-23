@@ -1,9 +1,13 @@
 import React from "react";
+import Navbar from "./navbar";
+import './dashboard.scss'
 
 
 const Dashboard: any = () => {
     return (
-        <>hello from Dashaboard</>
+        <div className="dashboard-container">
+            <Navbar></Navbar>
+        </div>
     )
 }
 
