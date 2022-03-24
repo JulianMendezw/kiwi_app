@@ -1,5 +1,6 @@
 # Kiwi APP
 
+![App Screenshot](https://github.com/JulianMendezw/kiwi_app/blob/master/frontend/public/Screenshot_dashboard.jpg?raw=true)
 
 This is a technical test for kiwi, with an api to manage deliveries and bots, through a dashboard developed in react and typescript.
 
