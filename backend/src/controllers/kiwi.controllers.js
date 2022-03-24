@@ -1,13 +1,13 @@
 const firebasedb = require('../firebasedb');
 const kiwiCtrl = {}
 require('../firebasedb')
-
+const uuid = require('uuid')
 
 // Create a new bot 
 kiwiCtrl.newBot = async (req, res) => {
 
     const botObj = {
-        "id": "string",
+        "id": uuid.v4(),
         "status": req.body.status,
         "location": {
             "dropoff_lat": req.body.location.dropoff_lat,
@@ -18,19 +18,18 @@ kiwiCtrl.newBot = async (req, res) => {
 
     try {
         const newBotDoc = await firebasedb.collection('bot').add(botObj);
-        botObj.id = newBotDoc.id
         res.send(botObj)
     } catch (error) {
         res.error(400).send("Bot was not created")
     }
 }
 
-
 // Create new delivery
 kiwiCtrl.newDelivery = async (req, res) => {
 
     // TODO: Value validator
     const deliveryObj = {
+        'id': uuid.v4(),
         'creation_date': Date.now(),
         'state': req.body.state,
         'pickup': {
@@ -46,7 +45,6 @@ kiwiCtrl.newDelivery = async (req, res) => {
 
     try {
         const newDeliveryDoc = await firebasedb.collection('delivery').add(deliveryObj);
-        deliveryObj.id = newDeliveryDoc.id
         res.send(deliveryObj)
 
     } catch (error) {

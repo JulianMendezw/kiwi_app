@@ -1,8 +1,8 @@
 const express = require('express')
 const app = express()
 const morgan = require('morgan')
-const bodyparse = require('body-parser')
-const path = require('path')
+const cors = require('cors')
+
 require('./firebasedb')
 
 // Local port for dev
@@ -16,6 +16,8 @@ app.use(morgan('dev'))
 
 // To receive json data from body request
 app.use(express.json())
+
+app.use(cors())
 
 // Routes
 app.use('/api/', require('./routes/kiwi.routes'))
