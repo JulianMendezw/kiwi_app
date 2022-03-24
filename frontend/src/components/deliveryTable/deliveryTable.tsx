@@ -15,27 +15,28 @@ const DeliveryTable = () => {
                 const date = new Date(delivery.creation_date).toLocaleString()
                 delivery.creation_date = date
             })
-            // SOrt in Ascending order
+            // Sort in Ascending order by date
             deliveriesDoc.sort((x: any, y: any) => +new Date(x.creation_date).getTime() - +new Date(y.creation_date).getTime())
             setDeliveries(deliveriesDoc)
         })
     }, [])
 
-
     useEffect(() => {
+        const newDeliveries = deliveries ? [...deliveries] : []
+
         if (order) {
-            deliveries?.sort((x: any, y: any) => +new Date(x.creation_date).getTime() - +new Date(y.creation_date).getTime());
-            setDeliveries(deliveries)
+            newDeliveries?.sort((x: any, y: any) => +new Date(x.creation_date).getTime() - +new Date(y.creation_date).getTime());
+            setDeliveries(newDeliveries)
         } else {
-            deliveries?.sort((x: any, y: any) => +new Date(y.creation_date).getTime() - +new Date(x.creation_date).getTime());
-            setDeliveries(deliveries)
+            newDeliveries?.sort((x: any, y: any) => +new Date(y.creation_date).getTime() - +new Date(x.creation_date).getTime());
+            setDeliveries(newDeliveries)
         }
-    })
+    }, [order])
 
     return (
         <div className="delivery-table-container">
             <div className="delivery-button-container">
-                <button onClick={() => setOrder(!order)}>{order ? "Order: DESC" : "Order: ASC"}</button>
+                <button className="Order-button" onClick={() => setOrder(!order)}>{order ? "Order: ASC" : "Order: DESC"}</button>
             </div>
 
             <table className="delivery-table">
@@ -49,7 +50,7 @@ const DeliveryTable = () => {
                 </thead>
                 <tbody>
                     {deliveries?.map((delivery: any) => (
-                        <tr>
+                        <tr key={delivery.id}>
                             <td>{delivery.creation_date}</td>
                             <td>{delivery.state}</td>
                             <td>{delivery.pickup.pickup_lat}</td>

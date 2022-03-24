@@ -1,15 +1,28 @@
 .delivery-table-container {
     color: white;
-    border: solid 2px rgb(26, 26, 26);
-    border-radius: 50px;
-    width: 1000px;
+    width: 95rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    border-radius: 50px;
+    background-color: #181a1b;
+
+    .delivery-button-container {
+        display: flex;
+        justify-content: flex-end;
+        padding: 30px 150px;
+
+        .Order-button {
+            color: rgb(255, 255, 255);
+            border-radius: 50px;
+            border: none;
+            width: 150px;
+            height: 50px;
+            background-color: #004daa;
+        }
+    }
 
     .delivery-table-button-container {
-        align-items: flex-end;
-
     }
 
     .delivery-table {
@@ -19,22 +32,20 @@
     }
 
     .delivery-table thead {
-        border: solid 2px blue;
-        border-radius: 50px;
+        border-bottom: solid #222527;
+        border-radius: 50%;
         width: 100%;
     }
 
     .delivery-table td {
-        border-style: solid;
         border-width: 0px;
         font-family: Arial, sans-serif;
         font-size: 14px;
         overflow: hidden;
-        padding: 10px 5px;
+        padding: 25px 5px;
         word-break: normal;
     }
     .delivery-table th {
-        border-style: solid;
         border-width: 0px;
         font-family: Arial, sans-serif;
         font-size: 14px;
