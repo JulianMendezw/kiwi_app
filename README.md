@@ -11,9 +11,9 @@ This is a technical test for kiwi, with an api to manage deliveries and bots, th
 
 ## Backend
 
-It is an api developed in node, express using a firestore service by firebase as database.
+It is an API developed in node, express using a firestore service by firebase as database.
 
-[ API Documentation](https://documenter.getpostman.com/view/15831605/UVsTpMtc)
+![ API Documentation](https://documenter.getpostman.com/view/15831605/UVsTpMtc)
 
 
 ## Frontend
@@ -24,6 +24,8 @@ Frontend was developed in node with react, sass and typescript which shows a lis
 ## Usage
 
 You need to clone this repository in order to use the API and Frontend.
+
+Remember to copy the serviceaccount file in order to use the firebase.
 
 
 Start the API from backend folder project
