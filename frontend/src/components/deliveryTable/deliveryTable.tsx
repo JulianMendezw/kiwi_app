@@ -1,59 +1,48 @@
+import { useEffect, useState } from 'react'
 import './deliveryTable.scss'
-
-const deliveryApiDoc = [{
-    "id": "1",
-    "creation_date": Date.now(),
-    "state": "pending",
-    "pickup": {
-        "pickup_lat": 12545,
-        "pickup_lon": 53535
-    },
-
-    "dropoff": {
-        "dropoff_lat": 634634,
-        "dropoff_lon": 346346,
-    },
-    "zone_id": "Polombia"
-},
-{
-    "id": "2",
-    "creation_date": Date.now(),
-    "state": "pending",
-    "pickup": {
-        "pickup_lat": 12545,
-        "pickup_lon": 53535
-    },
-
-    "dropoff": {
-        "dropoff_lat": 634634,
-        "dropoff_lon": 346346,
-    },
-    "zone_id": "Polombia"
-}
-]
+import KiwiApi from '../../utils/kiwiApi'
+import { IkiwiApiDeliveries } from '../../utils/interfaces'
 
 const DeliveryTable = () => {
 
+    const [deliveries, setDeliveries] = useState<Array<IkiwiApiDeliveries>>();
+    const [date, setDate] = useState();
+
+    useEffect(() => {
+        KiwiApi().then((deliveries) => {
+            // to Format Date
+            deliveries?.map((delivery: any) => {
+                const date = new Date(delivery.creation_date).toLocaleString()
+                delivery.creation_date = date
+            })
+            setDeliveries(deliveries)
+        })
+    }, [])
+
+    const dateFormat = (params: any) => {
+        const date = new Date(params)
+        return date
+    }
 
     return (
         <div className="delivery-table-container">
             <table className="delivery-table">
                 <thead>
                     <tr>
-                        <th className="tg-0lax">Creation Date</th>
-                        <th className="tg-0lax">Creation Time</th>
+                        <th className="tg-0lax">Creation</th>
                         <th className="tg-0lax">State</th>
                         <th className="tg-0lax">Pickup</th>
                         <th className="tg-0lax">Dropoff</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {deliveryApiDoc?.map((apiData: any) => (
+                    {deliveries?.map((delivery: any) => (
+
                         <tr>
-                            <td>{apiData.creation_date}</td>
-                            <td>{apiData.state}</td>
-                            <td>{apiData.pickup.pickup_lat}</td>
-                            <td>{apiData.dropoff.dropoff_lat}</td>
+                            <td>{delivery.creation_date}</td>
+                            <td>{delivery.state}</td>
+                            <td>{delivery.pickup.pickup_lat}</td>
+                            <td>{delivery.dropoff.dropoff_lat}</td>
                         </tr>
                     ))}
 
