@@ -13,6 +13,8 @@ This is a technical test for kiwi, with an api to manage deliveries and bots, th
 
 It is an api developed in node, express using a firestore service by firebase as database.
 
+[ API Documentation](https://documenter.getpostman.com/view/15831605/UVsTpMtc)
+
 
 ## Frontend
 
