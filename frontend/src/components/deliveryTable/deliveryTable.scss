@@ -1,0 +1,42 @@
+.delivery-table-container {
+    color: white;
+    border: solid 2px red;
+    width: 1000px;
+    display: flex;
+    justify-content: center;
+
+    .delivery-table {
+        border: none;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    .delivery-table thead {
+        border: solid 2px blue;
+        width: 100%;
+    }
+    
+    .delivery-table td {
+        border-style: solid;
+        border-width: 0px;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        overflow: hidden;
+        padding: 10px 5px;
+        word-break: normal;
+    }
+    .delivery-table th {
+        border-style: solid;
+        border-width: 0px;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        overflow: hidden;
+        padding: 10px 5px;
+        word-break: normal;
+    }
+    .delivery-table .delivery-table-0lax {
+        text-align: right;
+        vertical-align: top;
+    }
+}

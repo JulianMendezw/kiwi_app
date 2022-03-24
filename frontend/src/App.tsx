@@ -1,6 +1,6 @@
 import './App.scss';
-import Dashboard from './components/dashboard';
-import Navbar from './components/navbar';
+import Dashboard from './components/dashboard/dashboard';
+import Navbar from './components/navbar/navbar';
 
 function App() {
   return (
