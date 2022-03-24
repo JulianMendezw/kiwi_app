@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './deliveryTable.scss'
 import KiwiApi from '../../utils/kiwiApi'
 import { IkiwiApiDeliveries } from '../../utils/interfaces'
+import { iframeMap } from './iframeMap'
 
 const DeliveryTable = () => {
 
@@ -44,8 +45,7 @@ const DeliveryTable = () => {
                     <tr>
                         <th className="tg-0lax">Creation</th>
                         <th className="tg-0lax">State</th>
-                        <th className="tg-0lax">Pickup</th>
-                        <th className="tg-0lax">Dropoff</th>
+                        <th className="tg-0lax">Pickup / Dropoff</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,14 +53,13 @@ const DeliveryTable = () => {
                         <tr key={delivery.id}>
                             <td>{delivery.creation_date}</td>
                             <td>{delivery.state}</td>
-                            <td>{delivery.pickup.pickup_lat}</td>
-                            <td>{delivery.dropoff.dropoff_lat}</td>
+                            <td>{iframeMap(delivery)}</td>
                         </tr>
                     ))}
 
                 </tbody>
             </table>
-        </div>
+        </div >
     )
 }
 
