@@ -6,26 +6,38 @@ import { IkiwiApiDeliveries } from '../../utils/interfaces'
 const DeliveryTable = () => {
 
     const [deliveries, setDeliveries] = useState<Array<IkiwiApiDeliveries>>();
-    const [date, setDate] = useState();
+    const [order, setOrder] = useState<boolean>(true)
 
     useEffect(() => {
-        KiwiApi().then((deliveries) => {
-            // to Format Date
-            deliveries?.map((delivery: any) => {
+        KiwiApi().then((deliveriesDoc) => {
+            // To format date
+            deliveriesDoc?.map((delivery: any) => {
                 const date = new Date(delivery.creation_date).toLocaleString()
                 delivery.creation_date = date
             })
-            setDeliveries(deliveries)
+            // SOrt in Ascending order
+            deliveriesDoc.sort((x: any, y: any) => +new Date(x.creation_date).getTime() - +new Date(y.creation_date).getTime())
+            setDeliveries(deliveriesDoc)
         })
     }, [])
 
-    const dateFormat = (params: any) => {
-        const date = new Date(params)
-        return date
-    }
+
+    useEffect(() => {
+        if (order) {
+            deliveries?.sort((x: any, y: any) => +new Date(x.creation_date).getTime() - +new Date(y.creation_date).getTime());
+            setDeliveries(deliveries)
+        } else {
+            deliveries?.sort((x: any, y: any) => +new Date(y.creation_date).getTime() - +new Date(x.creation_date).getTime());
+            setDeliveries(deliveries)
+        }
+    })
 
     return (
         <div className="delivery-table-container">
+            <div className="delivery-button-container">
+                <button onClick={() => setOrder(!order)}>{order ? "Order: DESC" : "Order: ASC"}</button>
+            </div>
+
             <table className="delivery-table">
                 <thead>
                     <tr>
@@ -37,7 +49,6 @@ const DeliveryTable = () => {
                 </thead>
                 <tbody>
                     {deliveries?.map((delivery: any) => (
-
                         <tr>
                             <td>{delivery.creation_date}</td>
                             <td>{delivery.state}</td>
