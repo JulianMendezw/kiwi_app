@@ -62,8 +62,8 @@ kiwiCtrl.getDelivery = async (req, res) => {
         const deliveryRef = firebasedb.collection('delivery').doc(req.query.id);
         const deliveryDoc = await deliveryRef.get();
 
-        if (deliveryDoc._fieldsProto) {
-            res.send(deliveryDoc)
+        if (deliveryDoc.data) {
+            res.send(deliveryDoc.data())
         } else {
             res.send('Delivery Not Found')
         }
@@ -71,27 +71,18 @@ kiwiCtrl.getDelivery = async (req, res) => {
     } catch (error) {
         res.status(400).send('Error')
     }
-
 }
 
-
 // Get all deliveries
-
 kiwiCtrl.getAllDeliveries = async (req, res) => {
 
     try {
         const deliveryRef = await firebasedb.collection('delivery').get();
-
-        console.log(deliveryRef.docs.map(doc => doc.data()))
         res.send(deliveryRef.docs.map(doc => doc.data()))
-
-// return snapshot.docs.map(doc => doc.data());
 
     } catch (error) {
         res.status(400).send('Error')
     }
-
-
 }
 
 module.exports = kiwiCtrl

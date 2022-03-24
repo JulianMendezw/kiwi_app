@@ -7,6 +7,6 @@ initializeApp({
 });
 
 const firebasedb = getFirestore();
-console.log('✅ Firebase successfully connected')
+console.info('✅ Firebase successfully connected')
 
 module.exports = firebasedb
